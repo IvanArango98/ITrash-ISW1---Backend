@@ -352,12 +352,48 @@ router.delete("/Api-Delete",function(req,res){
     db.query(sqlDelete,PrimaryKey, (err, result) => {
         if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "Se ha eliminado el registro de manera exitosa"}))      
+                res.send(JSON.stringify({resultado: result, mensaje: `Registro eliminado exitoso de la tabla ${NombreTabla}`}))      
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
             }   
     })
+})
+
+router.put("/Api-Update",function(req,res){
+
+    //VARIABLES DE ENTRADAS
+    let NombreTabla = req.body.NombreTabla
+    let PrimaryKey = req.body.PrimaryKey
+    let PrimaryKeyName = req.body.PrimaryKeyName
+
+    //Este sera un array - Entrada de prueba [{Columna: "Campo 1", "Valor" : "Valor nuevo"}]
+    let Campos = req.body.Campos
+    
+    //VARIABLES DE CODIGO
+    let Valores = ""
+    Object.keys(Campos).forEach( index => {
+        Valores += `${Campos[index].Columna} = ${Campos[index].Valor} ,`
+    })    
+
+    //Para quitar la ultima ,
+    Valores = Valores.substring(0,Valores.length - 1)
+    
+
+    let sqlUpdate = `UPDATE ${NombreTabla} SET ${Valores} WHERE ${PrimaryKeyName} = ${PrimaryKey}`
+    console.log(sqlUpdate)
+
+    db.query(sqlUpdate, (err, result) => {
+        if(err !== undefined)
+        {            
+            res.send(JSON.stringify({resultado: result, mensaje: `Registro actualizado exitosamente de la tabla ${NombreTabla}`}))      
+        }
+        else
+        {
+            res.send(JSON.stringify({error: err}))
+        } 
+    })
+
 })
 module.exports = router;
