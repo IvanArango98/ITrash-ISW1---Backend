@@ -324,76 +324,40 @@ router.post("/ApiCreate",function(req,res) {
 router.get("/Api-Read",function(req,res){
 
     //Metodo get simple
-    let Opcion =  req.query.Opcion    
-    let sqlSelect = ""
-    let bandera = false
+    let NombreTabla =  req.query.NombreTabla        
 
-    switch(parseInt(Opcion)) {
-        case 1: 
-        //TipoEmpleado
-        sqlSelect = 'SELECT * FROM TipoEmpleado'
-        break;
-
-        case 2: 
-        //Empleado
-        sqlSelect = 'SELECT * FROM Empleado'
-        break;
-
-        case 3: 
-        //BitacoraContraseña
-        sqlSelect = 'SELECT * FROM BitacoraContraseña'
-        break;
-
-        case 4: 
-        //TelefonoEmpleado
-        sqlSelect = 'SELECT * FROM TelefonoEmpleado'
-        break;
-
-        case 5: 
-        //CorreoEmpleado
-        sqlSelect = 'SELECT * FROM CorreoEmpleado'
-        break;
-
-        case 6: 
-        //LicenciaConducir
-        sqlSelect = 'SELECT * FROM LicenciaConducir'
-        break;
-
-        case 7: 
-        //Ruta
-        sqlSelect = 'SELECT * FROM Ruta'
-        break;
-
-        case 8: 
-        //Basurero
-        sqlSelect = 'SELECT * FROM Basurero'
-        break;
-
-        case 9: 
-        //BitacoraRuta
-        sqlSelect = 'SELECT * FROM BitacoraRuta'
-        break;
-
-        default:
-        res.send(JSON.stringify({mensaje: "Debe de ingresar una opción valida"}))
-        bandera=true;
-        break;
-    }
+    let sqlSelect = `SELECT * FROM ${NombreTabla}`
     
-    if(!bandera)
-    {
         db.query(sqlSelect,(err,result) => {
 
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "GET EXITOSO"}))      
+                res.send(JSON.stringify({resultado: result, mensaje: `GET EXITOSO DE LA TABLA ${NombreTabla}`}))      
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
             }    
-        });
-    }    
+        });        
 })
 
+
+router.delete("/Api-Delete",function(req,res){
+    let NombreTabla = req.body.NombreTabla
+    let PrimaryKey = req.body.PrimaryKey
+    let PrimaryKeyName = req.body.PrimaryKeyName
+
+    let sqlDelete = `DELETE FROM ${NombreTabla} WHERE ${PrimaryKeyName} = ?`
+
+    db.query(sqlDelete,PrimaryKey, (err, result) => {
+        if(err !== undefined)
+            {            
+                res.send(JSON.stringify({resultado: result, mensaje: "Se ha eliminado el registro de manera exitosa"}))      
+            }
+            else
+            {
+                res.send(JSON.stringify({error: err}))
+            }   
+    })
+})
 module.exports = router;
