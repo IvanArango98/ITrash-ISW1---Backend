@@ -19,17 +19,18 @@ const db = mysql.createConnection(configurate);
 router.post("/ApiCreate",function(req,res) {
     //Proceso para hacer create    
 
-    let Opcion = req.body.Opcion
+    let Tabla = req.body.Tabla
     let sqlInsert = ""
+    let CodigoEmpleado = req.body.CodigoEmpleado
+    let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado 
     
-    switch(parseInt(Opcion))
+    switch((Opcion))
     {
-        case 1: 
+        case "TipoEmpleado": 
         //TipoEmpleado
 
         //deben de ser int
-        let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado        
-        let CodigoEmpleado = req.body.CodigoEmpleado
+                       
 
         //debe de ser string
         let NombrePuesto = req.body.NombrePuesto
@@ -48,7 +49,7 @@ router.post("/ApiCreate",function(req,res) {
         });
         break;
 
-        case 2: 
+        case "Empleado": 
         //Empleado
 
         //Debe de ser int y es llave primaria
@@ -71,8 +72,8 @@ router.post("/ApiCreate",function(req,res) {
         //let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado
 
         sqlInsert = 
-        "INSERT INTO Empleado (CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion) VALUES (?,?,?,?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion],(err,result) =>{
+        "INSERT INTO Empleado (CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado) VALUES (?,?,?,?,?,?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado],(err,result) =>{
             if(err !== undefined)
             {            
                 res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla Empleado"}))      
@@ -84,7 +85,7 @@ router.post("/ApiCreate",function(req,res) {
         });
         break;
 
-        case 3: 
+        case "BitacoraContraseña": 
         //BitacoraContraseña
 
         //debe de ser int y es llave primaria
@@ -145,7 +146,7 @@ router.post("/ApiCreate",function(req,res) {
     
         break;
 
-        case 5: 
+        case "CorreoEmpleado": 
 
         //CorreoEmpleado
 
@@ -175,7 +176,7 @@ router.post("/ApiCreate",function(req,res) {
         });        
         break;
 
-        case 6: 
+        case "LicenciaConducir": 
         //LicenciaConducir
 
         //Debe de ser entero y es la llave primaria
@@ -208,7 +209,7 @@ router.post("/ApiCreate",function(req,res) {
 
         break;
 
-        case 7: 
+        case "Ruta": 
         //Ruta
 
         //Debe de ser entero y es la llave primaria          
@@ -245,7 +246,7 @@ router.post("/ApiCreate",function(req,res) {
     
         break;
         
-        case 8: 
+        case "Basurero": 
         //Basurero
 
         //Debe de ser entero y es la llave primaria 
@@ -281,7 +282,7 @@ router.post("/ApiCreate",function(req,res) {
         break;
 
            
-    case 9:
+    case "BitacoraRuta":
         //BitacoraRuta
 
         //Debe de ser entero y es llave primaria

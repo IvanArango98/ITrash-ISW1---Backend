@@ -27,7 +27,7 @@ create table BitacoraContraseña(
     CodigoEmpleado int not null,
     Contraseña varchar(20) not null,
     FechaInicio date not null,
-    FechaFin date not null,    
+    FechaFin date null,    
 	PRIMARY KEY (CodigoContraseña),    
 	FOREIGN KEY (CodigoEmpleado) REFERENCES Empleado(CodigoEmpleado)
 );
