@@ -22,9 +22,12 @@ router.post("/ApiCreate",function(req,res) {
     let Tabla = req.body.Tabla
     let sqlInsert = ""
     let CodigoEmpleado = req.body.CodigoEmpleado
-    let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado 
+    let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado     
+    let Activo = req.body.Activo   
+    let CodigoRuta = req.body.CodigoRuta 
+    let CodigoBasurero = req.body.CodigoBasurero
     
-    switch((Opcion))
+    switch((Tabla))
     {
         case "TipoEmpleado": 
         //TipoEmpleado
@@ -40,12 +43,19 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoTipoEmpleado,CodigoEmpleado,NombrePuesto],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla TipoEmpleado"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }           
         });
         break;
 
@@ -66,7 +76,7 @@ router.post("/ApiCreate",function(req,res) {
         let CodigoDocumentoIdentificacion = req.body.CodigoDocumentoIdentificacion
 
         //Debe de ser booleano
-        let Activo = req.body.Activo
+        //let Activo = req.body.Activo
 
         //Debe de ser int y es llave fornea de codigotipoempleado de la tabla TipoEmpleado
         //let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado
@@ -76,12 +86,19 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla Empleado"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }           
         });
         break;
 
@@ -106,17 +123,24 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoContraseña,CodigoEmpleado,Contraseña, FechaInicio,FechaFin],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla BitacoraContraseña"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }           
         });
     	
         break;
 
-        case 4: 
+        case "TelefonoEmpleado": 
         //TelefonoEmpleado
 
         //Debe de ser int y es llave primaria
@@ -136,7 +160,14 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoTelefono,CodigoEmpleado,NumeroDeTelefono, Activo],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla TelefonoEmpleado"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
@@ -167,7 +198,14 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoCorreo,CodigoEmpleado,DireccionCorreo, Activo],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla CorreoEmpleado"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
@@ -199,12 +237,19 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoLicencia,CodigoEmpleado,TipoLicencia, NumeroDocumento,FechaVencimiento],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla LicenciaConducir"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }         
         });     
 
         break;
@@ -213,7 +258,7 @@ router.post("/ApiCreate",function(req,res) {
         //Ruta
 
         //Debe de ser entero y es la llave primaria          
-        let CodigoRuta = req.body.CodigoRuta
+//        let CodigoRuta = req.body.CodigoRuta
 
         //Debe de ser entero y es llave foranea de la tabla Empleado
         //let CodigoEmpleado = req.body.CodigoEmpleado
@@ -236,6 +281,20 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoRuta,CodigoEmpleado,Distancia, FechaCreacion,HoraInicio,HoraFin,Estado],(err,result) =>{
             if(err !== undefined)
             {            
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
+            }
+            else
+            {
+                res.send(JSON.stringify({error: err}))
+            }    if(err !== undefined)
+            {            
                 res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla Ruta"}))      
             }
             else
@@ -250,7 +309,7 @@ router.post("/ApiCreate",function(req,res) {
         //Basurero
 
         //Debe de ser entero y es la llave primaria 
-        let CodigoBasurero = req.body.CodigoBasurero
+//        let CodigoBasurero = req.body.CodigoBasurero
 
         //Debe de ser double
         let VolumenActualBasura = req.body.VolumenActualBasura
@@ -271,12 +330,19 @@ router.post("/ApiCreate",function(req,res) {
         db.query(sqlInsert,[CodigoBasurero,VolumenActualBasura, Direccion,Latitud,Longitud,Capacidad,Activo],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla Basurero"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }             
         });
 
         break;
@@ -286,10 +352,10 @@ router.post("/ApiCreate",function(req,res) {
         //BitacoraRuta
 
         //Debe de ser entero y es llave primaria
-        //let CodigoRuta = req.body.CodigoRuta
+       let CodigoBitacoraRuta = req.body.CodigoBitacoraRuta
 
         //Debe de entero y es llave fornea de de la tabla ruta
-        let CodigoBitacoraRuta = req.body.CodigoBitacoraRuta
+        //let codigo Ruta = req.body.Ruta        
 
         //Debe de ser entero y es llave foranea de la tabla Basurero
         //let CodigoBasurero = req.body.CodigoBasurero
@@ -301,16 +367,23 @@ router.post("/ApiCreate",function(req,res) {
         let PosicionRuta = req.body.PosicionRuta
         
         sqlInsert = 
-        "INSERT INTO BitacoraRuta (CodigoRuta,CodigoBitacoraRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta) VALUES (?,?,?,?,?,)";                          
+        "INSERT INTO BitacoraRuta (CodigoRuta,CodigoBitacoraRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta) VALUES (?,?,?,?,?)";                          
         db.query(sqlInsert,[CodigoRuta,CodigoBitacoraRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta],(err,result) =>{
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: "INSERT EXITOSO en tabla BitacoraRuta"}))      
+                if(result === undefined)
+                {
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`}))      
+                }
+                else
+                {
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`}))         
+                }                
             }
             else
             {
                 res.send(JSON.stringify({error: err}))
-            }            
+            }              
         });
 
         break;
