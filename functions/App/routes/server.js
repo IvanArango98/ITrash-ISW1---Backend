@@ -18,7 +18,6 @@ const db = mysql.createConnection(configurate);
 
 router.post("/ApiCreate",function(req,res) {
     //Proceso para hacer create    
-
     let Tabla = req.body.Tabla
     let sqlInsert = ""
     let CodigoEmpleado = req.body.CodigoEmpleado

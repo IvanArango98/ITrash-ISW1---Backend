@@ -2,20 +2,20 @@ create database itrash;
 use itrash;
 
 CREATE table TipoEmpleado(
-	CodigoTipoEmpleado int not null,
+	CodigoTipoEmpleado int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     NombrePuesto varchar(30) not null,    
 	PRIMARY KEY (CodigoTipoEmpleado)    
 );
 
 CREATE table Empleado(
-	CodigoEmpleado int not null,
+	CodigoEmpleado int not null AUTO_INCREMENT,
     PrimerNombre varchar(30) not null,
     SegundoNombre varchar(30) not null,
     PrimerApellido varchar(30) not null,
     SegundoApellido varchar(30) not null,
     ApellidoDeCasada varchar(30) null, 
-    CodigoDocumentoIdentificacion int not null,
+    CodigoDocumentoIdentificacion varchar(13) not null,
     Activo default true,    
     CodigoTipoEmpleado int not null,
 	PRIMARY KEY (CodigoEmpleado),
@@ -23,7 +23,7 @@ CREATE table Empleado(
 );
 
 CREATE  table BitacoraContraseña(
-	CodigoContraseña int not null,
+	CodigoContraseña int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     Contraseña varchar(65535) not null,
     FechaInicio date not null,
@@ -33,7 +33,7 @@ CREATE  table BitacoraContraseña(
 );
 
 CREATE table TelefonoEmpleado(
-	CodigoTelefono int not null,
+	CodigoTelefono int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     NumeroDeTelefono BIGINT not null,
     Activo default true,    
@@ -42,7 +42,7 @@ CREATE table TelefonoEmpleado(
 );
 
 CREATE  table CorreoEmpleado(
-	CodigoCorreo int not null,
+	CodigoCorreo int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     DireccionCorreo varchar(30) not null,
     Activo default true,    
@@ -52,7 +52,7 @@ CREATE  table CorreoEmpleado(
 
 
 CREATE table LicenciaConducir(
-	CodigoLicencia int not null,
+	CodigoLicencia int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     TipoLicencia varchar(1) not null,
     NumeroDocumento BigInt not null,    
@@ -64,7 +64,7 @@ CREATE table LicenciaConducir(
 
 
 CREATE table Ruta(
-	CodigoRuta int not null,
+	CodigoRuta int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     Distancia double not null,
     FechaCreacion date not null,
@@ -77,7 +77,7 @@ CREATE table Ruta(
 );
 
 CREATE table Basurero(
-	CodigoBasurero int not null,
+	CodigoBasurero int not null AUTO_INCREMENT,
     VolumenActualBasura double not null,
     Direccion varchar(150) not null,
     Latitud double not null,
@@ -88,8 +88,8 @@ CREATE table Basurero(
 );
 
 CREATE table BitacoraRuta(
+    CodigoBitacoraRuta int not null AUTO_INCREMENT,
 	CodigoRuta int not null,
-    CodigoBitacoraRuta int not null,
     CodigoBasurero int not null,
     HoraRecoleccion time not null,
     PosicionRuta varchar(50) not null,    
