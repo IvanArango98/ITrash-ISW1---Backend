@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const cors = require("cors")
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 const PORT = process.env.PORT || 3050;
 
@@ -23,6 +24,7 @@ var connection = mysql.createConnection({
   app.post('/Login', (req, res) => {
     //hashear contraseña 
     let {DireccionCorreo, Contraseña} = req.body
+    Contraseña = crypto.createHash("sha512").update(Contraseña).digest("hex")
 
     let sqlStmt = `SELECT CodigoEmpleado FROM correoempleado WHERE DireccionCorreo = '${DireccionCorreo}' AND Activo = 1`
 

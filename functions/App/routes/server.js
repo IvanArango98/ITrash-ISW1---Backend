@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql');
 const cors = require("cors")
+const crypto = require("crypto");
 
 router.use(express.json())
 router.use(express.urlencoded({extended : false}))
@@ -38,8 +39,8 @@ router.post("/ApiCreate",function(req,res) {
         let NombrePuesto = req.body.NombrePuesto
 
         sqlInsert = 
-        "INSERT INTO TipoEmpleado (CodigoTipoEmpleado,CodigoEmpleado,NombrePuesto ) VALUES (?,?,?)";             
-        db.query(sqlInsert,[CodigoTipoEmpleado,CodigoEmpleado,NombrePuesto],(err,result) =>{
+        "INSERT INTO TipoEmpleado (CodigoEmpleado,NombrePuesto ) VALUES (?,?)";             
+        db.query(sqlInsert,[CodigoEmpleado,NombrePuesto],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -81,8 +82,8 @@ router.post("/ApiCreate",function(req,res) {
         //let CodigoTipoEmpleado = req.body.CodigoTipoEmpleado
 
         sqlInsert = 
-        "INSERT INTO Empleado (CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado) VALUES (?,?,?,?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoEmpleado,PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado],(err,result) =>{
+        "INSERT INTO Empleado (PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado) VALUES (?,?,?,?,?,?,?)";                          
+        db.query(sqlInsert,[PrimerNombre,SegundoNombre, PrimerApellido,SegundoApellido,ApellidoDeCasada,CodigoDocumentoIdentificacion,CodigoTipoEmpleado],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -111,15 +112,15 @@ router.post("/ApiCreate",function(req,res) {
         //let CodigoEmpleado = req.body.CodigoEmpleado
 
         //debe de ser string
-        let Contraseña = req.body.Contraseña
+        let Contraseña = crypto.createHash("sha512").update(req.body.Contraseña).digest("hex") 
 
         //deben de ser date
         let FechaInicio = req.body.FechaInicio
         let FechaFin = req.body.FechaFin
 
         sqlInsert = 
-        "INSERT INTO BitacoraContraseña (CodigoContraseña,CodigoEmpleado,Contraseña, FechaInicio,FechaFin) VALUES (?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoContraseña,CodigoEmpleado,Contraseña, FechaInicio,FechaFin],(err,result) =>{
+        "INSERT INTO BitacoraContraseña (CodigoEmpleado,Contraseña, FechaInicio,FechaFin) VALUES (?,?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,Contraseña, FechaInicio,FechaFin],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -155,8 +156,8 @@ router.post("/ApiCreate",function(req,res) {
         //let Activo = req.body.Activo
 
         sqlInsert = 
-        "INSERT INTO TelefonoEmpleado (CodigoTelefono,CodigoEmpleado,NumeroDeTelefono, Activo) VALUES (?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoTelefono,CodigoEmpleado,NumeroDeTelefono, Activo],(err,result) =>{
+        "INSERT INTO TelefonoEmpleado (CodigoEmpleado,NumeroDeTelefono, Activo) VALUES (?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,NumeroDeTelefono, Activo],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -193,8 +194,8 @@ router.post("/ApiCreate",function(req,res) {
         //let Activo = req.body.Activo
         
         sqlInsert = 
-        "INSERT INTO CorreoEmpleado (CodigoCorreo,CodigoEmpleado,DireccionCorreo, Activo) VALUES (?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoCorreo,CodigoEmpleado,DireccionCorreo, Activo],(err,result) =>{
+        "INSERT INTO CorreoEmpleado (CodigoEmpleado,DireccionCorreo, Activo) VALUES (?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,DireccionCorreo, Activo],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -232,8 +233,8 @@ router.post("/ApiCreate",function(req,res) {
         let FechaVencimiento = req.body.FechaVencimiento
     
         sqlInsert = 
-        "INSERT INTO LicenciaConducir (CodigoLicencia,CodigoEmpleado,TipoLicencia, NumeroDocumento,FechaVencimiento) VALUES (?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoLicencia,CodigoEmpleado,TipoLicencia, NumeroDocumento,FechaVencimiento],(err,result) =>{
+        "INSERT INTO LicenciaConducir (CodigoEmpleado,TipoLicencia, NumeroDocumento,FechaVencimiento) VALUES (?,?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,TipoLicencia, NumeroDocumento,FechaVencimiento],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -276,8 +277,8 @@ router.post("/ApiCreate",function(req,res) {
         let Estado = req.body.Estado
 
         sqlInsert = 
-        "INSERT INTO Ruta (CodigoRuta,CodigoEmpleado,Distancia, FechaCreacion,HoraInicio,HoraFin,Estado) VALUES (?,?,?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoRuta,CodigoEmpleado,Distancia, FechaCreacion,HoraInicio,HoraFin,Estado],(err,result) =>{
+        "INSERT INTO Ruta (CodigoEmpleado,Distancia, FechaCreacion,HoraInicio,HoraFin,Estado) VALUES (?,?,?,?,?,?)";                          
+        db.query(sqlInsert,[CodigoEmpleado,Distancia, FechaCreacion,HoraInicio,HoraFin,Estado],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -325,8 +326,8 @@ router.post("/ApiCreate",function(req,res) {
         //let Activo = req.body.Activo   
         
         sqlInsert = 
-        "INSERT INTO Basurero (CodigoBasurero,VolumenActualBasura, Direccion,Latitud,Longitud,Capacidad,Activo) VALUES (?,?,?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoBasurero,VolumenActualBasura, Direccion,Latitud,Longitud,Capacidad,Activo],(err,result) =>{
+        "INSERT INTO Basurero (VolumenActualBasura, Direccion,Latitud,Longitud,Capacidad,Activo) VALUES (?,?,?,?,?,?)";                          
+        db.query(sqlInsert,[VolumenActualBasura, Direccion,Latitud,Longitud,Capacidad,Activo],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
@@ -366,8 +367,8 @@ router.post("/ApiCreate",function(req,res) {
         let PosicionRuta = req.body.PosicionRuta
         
         sqlInsert = 
-        "INSERT INTO BitacoraRuta (CodigoRuta,CodigoBitacoraRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta) VALUES (?,?,?,?,?)";                          
-        db.query(sqlInsert,[CodigoRuta,CodigoBitacoraRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta],(err,result) =>{
+        "INSERT INTO BitacoraRuta (CodigoRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta) VALUES (?,?,?,?)";                          
+        db.query(sqlInsert,[CodigoRuta,CodigoBasurero, HoraRecoleccion,PosicionRuta],(err,result) =>{
             if(err !== undefined)
             {            
                 if(result === undefined)
