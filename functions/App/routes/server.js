@@ -406,11 +406,11 @@ router.get("/Api-Read",function(req,res){
 
             if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: `GET EXITOSO DE LA TABLA ${NombreTabla}`}))      
+                res.send(JSON.stringify({resultado: result, mensaje: `GET EXITOSO DE LA TABLA ${NombreTabla}`,status:"200"}))      
             }
             else
             {
-                res.send(JSON.stringify({error: err}))
+                res.send(JSON.stringify({error: err,status:"500"}))
             }    
         });        
 })
@@ -426,11 +426,11 @@ router.delete("/Api-Delete",function(req,res){
     db.query(sqlDelete,PrimaryKey, (err, result) => {
         if(err !== undefined)
             {            
-                res.send(JSON.stringify({resultado: result, mensaje: `Registro eliminado exitoso de la tabla ${NombreTabla}`}))      
+                res.send(JSON.stringify({resultado: result, mensaje: `Registro eliminado exitoso de la tabla ${NombreTabla}`,status:"200"}))      
             }
             else
             {
-                res.send(JSON.stringify({error: err}))
+                res.send(JSON.stringify({error: err,status:"500"}))
             }   
     })
 })
@@ -461,11 +461,11 @@ router.put("/Api-Update",function(req,res){
     db.query(sqlUpdate, (err, result) => {
         if(err !== undefined)
         {            
-            res.send(JSON.stringify({resultado: result, mensaje: `Registro actualizado exitosamente de la tabla ${NombreTabla}`}))      
+            res.send(JSON.stringify({resultado: result, mensaje: `Registro actualizado exitosamente de la tabla ${NombreTabla}`,status:"200"}))      
         }
         else
         {
-            res.send(JSON.stringify({error: err}))
+            res.send(JSON.stringify({error: err,status:"500"}))
         } 
     })
 
