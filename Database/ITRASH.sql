@@ -16,7 +16,7 @@ CREATE table Empleado(
     SegundoApellido varchar(30) not null,
     ApellidoDeCasada varchar(30) null, 
     CodigoDocumentoIdentificacion varchar(13) not null,
-    Activo default true,    
+    Activo boolean default true,    
     CodigoTipoEmpleado int not null,
 	PRIMARY KEY (CodigoEmpleado),
     FOREIGN KEY (CodigoTipoEmpleado) REFERENCES TipoEmpleado(CodigoTipoEmpleado)
@@ -25,7 +25,7 @@ CREATE table Empleado(
 CREATE  table BitacoraContraseña(
 	CodigoContraseña int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
-    Contraseña varchar(65535) not null,
+    Contraseña text(65535) not null,
     FechaInicio date not null,
     FechaFin date,    
 	PRIMARY KEY (CodigoContraseña),    
@@ -36,7 +36,7 @@ CREATE table TelefonoEmpleado(
 	CodigoTelefono int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     NumeroDeTelefono BIGINT not null,
-    Activo default true,    
+    Activo boolean default true,    
     PRIMARY KEY (CodigoTelefono),    
     FOREIGN KEY (CodigoEmpleado) REFERENCES Empleado(CodigoEmpleado)
 );
@@ -45,7 +45,7 @@ CREATE  table CorreoEmpleado(
 	CodigoCorreo int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
     DireccionCorreo varchar(30) not null,
-    Activo default true,    
+    Activo boolean default true,    
     PRIMARY KEY (CodigoCorreo),    
     FOREIGN KEY (CodigoEmpleado) REFERENCES Empleado(CodigoEmpleado)
 );
@@ -70,7 +70,7 @@ CREATE table Ruta(
     FechaCreacion date not null,
     HoraInicio time not null,
     HoraFin time not null,
-    Estado default true,
+    Estado boolean default true,
 	PRIMARY KEY (CodigoRuta),
     FOREIGN KEY (CodigoEmpleado) REFERENCES Empleado(CodigoEmpleado),
     CONSTRAINT CHK_Horas CHECK(HoraFin > HoraInicio)    
@@ -83,7 +83,7 @@ CREATE table Basurero(
     Latitud double not null,
     Longitud double not null,
     Capacidad double not null,
-    Activo default true,    
+    Activo boolean default true,       
     PRIMARY KEY (CodigoBasurero)
 );
 
