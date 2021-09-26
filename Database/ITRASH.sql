@@ -3,7 +3,6 @@ use itrash;
 
 CREATE table TipoEmpleado(
 	CodigoTipoEmpleado int not null AUTO_INCREMENT,
-    CodigoEmpleado int not null,
     NombrePuesto varchar(30) not null,    
 	PRIMARY KEY (CodigoTipoEmpleado)    
 );
