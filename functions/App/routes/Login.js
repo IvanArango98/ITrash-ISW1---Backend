@@ -1,27 +1,25 @@
 const express = require('express');
-const mysql = require('mysql');
+const router = express.Router()
 const cors = require("cors")
+const mysql = require('mysql');
+const crypto = require("crypto");
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
 
-const PORT = process.env.PORT || 3050;
-
-const app = express();
-
-app.use(bodyParser.json());
-app.use(cors())
+router.use(express.json())
+router.use(express.urlencoded({extended : false}))
+router.use(cors())
 
 //My SQL
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'root',
-    database : 'itrash'
+const connection = mysql.createConnection({
+    host: '35.226.226.12'    ,
+    user: 'root',
+    password: '123abc',
+    database: 'itrash',  
   });
    
 //rutas
-  app.post('/Login', (req, res) => {
+  router.post('/Login', (req, res) => {
     //hashear contraseña 
     let {DireccionCorreo, Contraseña} = req.body
     Contraseña = crypto.createHash("sha512").update(Contraseña).digest("hex")
@@ -82,4 +80,5 @@ var connection = mysql.createConnection({
       console.log('Database server running!');
   });
 
-  app.listen(PORT, () => console.log(`Server running in port ${PORT}`));
+
+  module.exports = router;
