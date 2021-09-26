@@ -45,11 +45,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -88,11 +88,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -126,11 +126,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -164,11 +164,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -203,11 +203,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -243,11 +243,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -288,11 +288,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -330,11 +330,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
@@ -372,11 +372,11 @@ router.post("/ApiCreate",function(req,res) {
             {            
                 if(result === undefined)
                 {
-                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"200"}))      
+                    res.send(JSON.stringify({error: `No se ha podido insertar bien los datos dentro de la tabla ${Tabla}`,status:"400"}))      
                 }
                 else
                 {
-                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"400"}))         
+                    res.send(JSON.stringify({resultado: result, mensaje: `INSERT EXITOSO en tabla ${Tabla}`,status:"200"}))         
                 }                
             }
             else
