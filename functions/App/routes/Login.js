@@ -21,10 +21,11 @@ const connection = mysql.createConnection({
 //rutas
   router.post('/Login', (req, res) => {
     //hashear contraseña 
-    let {DireccionCorreo, Contraseña} = req.body
-    Contraseña = crypto.createHash("sha512").update(Contraseña).digest("hex")
+    let DireccionCorreo = req.body.DireccionCorreo
+    
+    Contraseña = crypto.createHash("sha512").update(req.body.Contraseña).digest("hex")
 
-    let sqlStmt = `SELECT CodigoEmpleado FROM correoempleado WHERE DireccionCorreo = '${DireccionCorreo}' AND Activo = 1`
+    let sqlStmt = `SELECT CodigoEmpleado FROM CorreoEmpleado WHERE DireccionCorreo = '${DireccionCorreo}' AND Activo = 1`
 
     //0. obtener id de empleado con correo electrónico
     connection.query(sqlStmt, (error, results) => {
@@ -32,7 +33,7 @@ const connection = mysql.createConnection({
         if (results.length > 0){            
 
             let codEmpleado = results[0].CodigoEmpleado
-            sqlStmt = `SELECT Contraseña FROM bitacoracontraseña WHERE CodigoEmpleado = '${codEmpleado}' AND ISNULL(FechaFin)`
+            sqlStmt = `SELECT Contraseña FROM BitacoraContraseña WHERE CodigoEmpleado = '${codEmpleado}' AND ISNULL(FechaFin)`
             
             //1. obtener contraseña actual del empleado
             connection.query(sqlStmt, (error, results) => {
@@ -40,7 +41,7 @@ const connection = mysql.createConnection({
                 if (results.length > 0){
                     if(results[0].Contraseña == Contraseña) {
 
-                        sqlStmt = `SELECT * FROM empleado WHERE CodigoEmpleado = '${codEmpleado}' AND Activo = 1`
+                        sqlStmt = `SELECT * FROM Empleado WHERE CodigoEmpleado = '${codEmpleado}' AND Activo = 1`
                         
                         //2. obtener datos el empleado
                         connection.query(sqlStmt, (error, results) => {
@@ -56,18 +57,18 @@ const connection = mysql.createConnection({
                                     });
                                 });
                             } else {
-                                res.send('Fallo en la generación de Token');
+                                res.send(JSON.stringify({msg:'Fallo en la generación de Token'}));
                             }
                         });
                     } else {
-                        res.send('Contraseña incorrecta');
+                        res.send(JSON.stringify({msg:'Contraseña incorrecta'}));
                     }      
                 } else {
-                    res.send('Contraseña no válida');
+                    res.send(JSON.stringify({msg:'Contraseña no válida'}));
                 }
             });
         } else {
-            res.send('Correo electrónico inválido');
+            res.send(JSON.stringify({msg:'Correo electrónico inválido'}));
         }
     });
 

@@ -107,17 +107,19 @@ router.post("/ApiCreate",function(req,res) {
         //BitacoraContraseña
 
         //debe de ser int y es llave primaria
-        let CodigoContraseña = req.body.CodigoContraseña
+        //let CodigoContraseña = req.body.CodigoContraseña
 
         //debe de ser int y llave fornea de la tabla Empleado
         //let CodigoEmpleado = req.body.CodigoEmpleado
 
         //debe de ser string
-        let Contraseña = crypto.createHash("sha512").update(req.body.Contraseña).digest("hex") 
+        let Contraseña = crypto.createHash("sha512").update(req.body.Contraseña).digest("hex")         
 
         //deben de ser date
         let FechaInicio = req.body.FechaInicio
         let FechaFin = req.body.FechaFin
+
+        console.log(`${CodigoEmpleado} || ${Contraseña} || ${FechaInicio} || ${FechaFin}`)
 
         sqlInsert = 
         "INSERT INTO BitacoraContraseña (CodigoEmpleado,Contraseña, FechaInicio,FechaFin) VALUES (?,?,?,?)";                          
@@ -222,7 +224,7 @@ router.post("/ApiCreate",function(req,res) {
         //LicenciaConducir
 
         //Debe de ser entero y es la llave primaria
-        let CodigoLicencia = req.body.CodigoLicencia
+        //let CodigoLicencia = req.body.CodigoLicencia
 
         //Debe de ser entero y es llave foranea de la tabla Empleado
         //let CodigoEmpleado = req.body.CodigoEmpleado

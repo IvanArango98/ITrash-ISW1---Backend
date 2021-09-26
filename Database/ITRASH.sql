@@ -25,9 +25,9 @@ CREATE table Empleado(
 CREATE  table BitacoraContraseña(
 	CodigoContraseña int not null AUTO_INCREMENT,
     CodigoEmpleado int not null,
-    Contraseña text(65535) not null,
+    Contraseña varchar(200) not null,
     FechaInicio date not null,
-    FechaFin date,    
+    FechaFin date null,    
 	PRIMARY KEY (CodigoContraseña),    
 	FOREIGN KEY (CodigoEmpleado) REFERENCES Empleado(CodigoEmpleado)
 );
